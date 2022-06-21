@@ -17,7 +17,7 @@ contract Mavericks is ERC721Enumerable, Ownable  {
 
  uint256 maximumTokenIds = 30;
 
- uint256 tokenIds;
+ uint256 public tokenIds;
 
  uint256 public _presalePrice = 0.002 ether; 
 

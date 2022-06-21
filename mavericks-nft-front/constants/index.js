@@ -1,4 +1,4 @@
-export const MAVERICK_CONTRACT_ADDRESS = "0xa01A61dd6ff52F1c0c8c6865e25C88aA10475EEA"
+export const MAVERICK_CONTRACT_ADDRESS  = "0x77Ef0834891D36f60e15Fe328995d3082823e1D3"
 
 export const abi = [
   {
@@ -456,6 +456,19 @@ export const abi = [
       }
     ],
     "name": "tokenByIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "tokenIds",
     "outputs": [
       {
         "internalType": "uint256",
