@@ -169,7 +169,6 @@ export default function Home() {
       }
     } catch (err) {
       console.error(err.message);
-      window.alert("Unable to get the owner of the contract")
     }
   };
 
@@ -179,7 +178,6 @@ export default function Home() {
       setWalletConnected(true);
     } catch (err) {
       console.error(err);
-      window.alert("Unable to connect wallet")
     }
   };
 
@@ -210,53 +208,48 @@ export default function Home() {
       });
       connectWallet();
 
-      const _presaleStarted = checkIfPreSaleStarted()
+      const _presaleStarted = checkIfPreSaleStarted();
       if (_presaleStarted) {
-        checkIfPreSaleCompleted()
+        checkIfPreSaleCompleted();
       }
 
-      getTokenIdsMinted()
+      getTokenIdsMinted();
 
-
-      const presaleCompletedInterval = setInterval( async function () {
-        const _presaleStarted = await checkIfPreSaleStarted()
+      const presaleCompletedInterval = setInterval(async function () {
+        const _presaleStarted = await checkIfPreSaleStarted();
         if (_presaleStarted) {
-          const _presaleCompleted = await checkIfPreSaleCompleted()
-          if(_presaleCompleted) {
-            clearInterval(presaleCompletedInterval)
+          const _presaleCompleted = await checkIfPreSaleCompleted();
+          if (_presaleCompleted) {
+            clearInterval(presaleCompletedInterval);
           }
         }
-      }, 5 * 1000)
-
+      }, 5 * 1000);
 
       setInterval(async function () {
-        await getTokenIdsMinted()
-      }, 5 * 1000)
-
-
+        await getTokenIdsMinted();
+      }, 5 * 1000);
     }
   }, [walletConnected]);
 
-
   const renderButton = () => {
-    if(!walletConnected) {
+    if (!walletConnected) {
       return (
-        <button onClick={connectWallet}  className={styles.button}>
+        <button onClick={connectWallet} className={styles.button}>
           Connect your wallet
         </button>
-      )
+      );
     }
 
     if (loading) {
-      return <button>Loading🎁...</button>
+      return <button>Loading🎁...</button>;
     }
 
     if (isOwner && !presaleBegin) {
       return (
-        <button onClick={startPresale} className={styles.button} >
+        <button onClick={startPresale} className={styles.button}>
           Start Presale!
         </button>
-      )
+      );
     }
 
     if (!presaleBegin) {
@@ -264,56 +257,54 @@ export default function Home() {
         <div>
           <div className={styles.description}>Presale hasnt started!</div>
         </div>
-      )
+      );
     }
 
     if (presaleBegin && !presaleCompleted) {
-      return(
+      return (
         <div>
           <div className={styles.description}>
-          Presale has started!!! If your address is whitelisted, Mint a
-            Crypto Dev 🥳
+            Presale has started!!! If your address is whitelisted, Mint a Crypto
+            Dev 🥳
           </div>
-          <button  onClick={presaleMint}className={styles.button} >
-          Presale Mint 🚀
+          <button onClick={presaleMint} className={styles.button}>
+            Presale Mint 🚀
           </button>
         </div>
-      )
+      );
     }
 
     if (presaleBegin && presaleCompleted) {
       return (
-        <button onClick={publicMint}  className={styles.button} >
-           Public Mint 🚀
+        <button onClick={publicMint} className={styles.button}>
+          Public Mint 🚀
         </button>
-      )
+      );
     }
-  }
+  };
 
   return (
-  <div>
-    <Head>
-      <title>Maverick Chain</title>
-      <meta name= "description" content="Maverick-NFT-mint" />
-    </Head>
-    <div className={styles.main} >
-      <div>
-      <h1 className={styles.title}>Welcome to Maverick Chain!</h1>
+    <div>
+      <Head>
+        <title>Maverick Chain</title>
+        <meta name="description" content="Maverick-NFT-mint" />
+      </Head>
+      <div className={styles.main}>
+        <div>
+          <h1 className={styles.title}>Welcome to Maverick Chain!</h1>
           <div className={styles.description}>
-           Its an NFT collection for members of Maverick Chain Defi.
+            Its an NFT collection for members of Maverick Chain Defi.
           </div>
           <div className={styles.description}>
             {tokenIdsMinted}/30 have been minted
           </div>
           {renderButton()}
+        </div>
+        <div>
+          <img className={styles.image} src="./onboard.jpg" />
+        </div>
+      </div>
+      <footer className={styles.footer}>Made with ❤ by Bellz</footer>
     </div>
-    <div>
-      <img className={styles.image} src="./onboard.jpg" />
-    </div>
-    </div>
-    <footer className={styles.footer} >
-      Made with ❤ by Bellz
-    </footer>
-  </div>
   );
 }
