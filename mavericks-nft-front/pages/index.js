@@ -145,7 +145,6 @@ export default function Home() {
       return hasEnded;
     } catch (err) {
       console.error(err);
-      window.alert("Presale already ended, kindly proceed to public mint!")
       return false;
     }
   };
