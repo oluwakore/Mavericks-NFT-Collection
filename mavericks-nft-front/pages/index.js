@@ -241,7 +241,7 @@ export default function Home() {
     }
 
     if (loading) {
-      return <button>Loading🎁...</button>;
+      return <button  className={styles.button} >Loading🎁...</button>;
     }
 
     if (isOwner && !presaleBegin) {
