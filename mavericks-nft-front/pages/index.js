@@ -145,6 +145,7 @@ export default function Home() {
       return hasEnded;
     } catch (err) {
       console.error(err);
+      window.alert("Presale already ended, kindly proceed to public mint!")
       return false;
     }
   };
@@ -169,6 +170,7 @@ export default function Home() {
       }
     } catch (err) {
       console.error(err.message);
+      window.alert("Unable to get the owner of the contract")
     }
   };
 
@@ -178,6 +180,7 @@ export default function Home() {
       setWalletConnected(true);
     } catch (err) {
       console.error(err);
+      window.alert("Unable to connect wallet")
     }
   };
 
@@ -246,7 +249,7 @@ export default function Home() {
     }
 
     if (loading) {
-      return <button>Loading...</button>
+      return <button>Loading🎁...</button>
     }
 
     if (isOwner && !presaleBegin) {
@@ -260,7 +263,7 @@ export default function Home() {
     if (!presaleBegin) {
       return (
         <div>
-          <div className={styles.description}>Presale hasnt started!</div>
+          <div className={styles.description}>Presale hasn't started!</div>
         </div>
       )
     }
