@@ -216,7 +216,7 @@ export default function Home() {
       getTokenIdsMinted()
 
 
-      const presaleCompletedInterval = setInterval(() => {
+      const presaleCompletedInterval = setInterval( async function () {
         const _presaleStarted = await checkIfPreSaleStarted()
         if (_presaleStarted) {
           const _presaleCompleted = await checkIfPreSaleCompleted()
